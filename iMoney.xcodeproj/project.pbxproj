@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		8427749D1F23A50C0075CA03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427749C1F23A50C0075CA03 /* main.m */; };
 		842774A01F23A50C0075CA03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427749F1F23A50C0075CA03 /* AppDelegate.m */; };
-		842774A31F23A50C0075CA03 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842774A21F23A50C0075CA03 /* ViewController.m */; };
 		842774A61F23A50C0075CA03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842774A41F23A50C0075CA03 /* Main.storyboard */; };
 		842774A81F23A50C0075CA03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842774A71F23A50C0075CA03 /* Assets.xcassets */; };
 		842774AB1F23A50C0075CA03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842774A91F23A50C0075CA03 /* LaunchScreen.storyboard */; };
+		84FA31761F25003E0072DDE4 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FA31751F25003E0072DDE4 /* MainScreenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +20,12 @@
 		8427749C1F23A50C0075CA03 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8427749E1F23A50C0075CA03 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8427749F1F23A50C0075CA03 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		842774A11F23A50C0075CA03 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		842774A21F23A50C0075CA03 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		842774A51F23A50C0075CA03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		842774A71F23A50C0075CA03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842774AA1F23A50C0075CA03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842774AC1F23A50C0075CA03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84FA31741F25003E0072DDE4 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
+		84FA31751F25003E0072DDE4 /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +60,8 @@
 			children = (
 				8427749E1F23A50C0075CA03 /* AppDelegate.h */,
 				8427749F1F23A50C0075CA03 /* AppDelegate.m */,
-				842774A11F23A50C0075CA03 /* ViewController.h */,
-				842774A21F23A50C0075CA03 /* ViewController.m */,
+				84FA31741F25003E0072DDE4 /* MainScreenViewController.h */,
+				84FA31751F25003E0072DDE4 /* MainScreenViewController.m */,
 				842774A41F23A50C0075CA03 /* Main.storyboard */,
 				842774A71F23A50C0075CA03 /* Assets.xcassets */,
 				842774A91F23A50C0075CA03 /* LaunchScreen.storyboard */,
@@ -151,7 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842774A31F23A50C0075CA03 /* ViewController.m in Sources */,
+				84FA31761F25003E0072DDE4 /* MainScreenViewController.m in Sources */,
 				842774A01F23A50C0075CA03 /* AppDelegate.m in Sources */,
 				8427749D1F23A50C0075CA03 /* main.m in Sources */,
 			);
@@ -312,6 +312,7 @@
 				842774B11F23A50C0075CA03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
