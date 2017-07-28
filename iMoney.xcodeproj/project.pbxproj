@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841952071F279A10005D9F83 /* NewPositionInCheckTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841952051F279A10005D9F83 /* NewPositionInCheckTableViewCell.m */; };
+		841952081F279A10005D9F83 /* NewPositionInCheckTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841952061F279A10005D9F83 /* NewPositionInCheckTableViewCell.xib */; };
 		8427749D1F23A50C0075CA03 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427749C1F23A50C0075CA03 /* main.m */; };
 		842774A01F23A50C0075CA03 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427749F1F23A50C0075CA03 /* AppDelegate.m */; };
 		842774A61F23A50C0075CA03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842774A41F23A50C0075CA03 /* Main.storyboard */; };
@@ -18,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		841952041F279A10005D9F83 /* NewPositionInCheckTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPositionInCheckTableViewCell.h; sourceTree = "<group>"; };
+		841952051F279A10005D9F83 /* NewPositionInCheckTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPositionInCheckTableViewCell.m; sourceTree = "<group>"; };
+		841952061F279A10005D9F83 /* NewPositionInCheckTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPositionInCheckTableViewCell.xib; sourceTree = "<group>"; };
 		842774981F23A50C0075CA03 /* iMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8427749C1F23A50C0075CA03 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8427749E1F23A50C0075CA03 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -72,6 +77,9 @@
 				84EE09F31F2643CF00465413 /* NewCheckViewController.m */,
 				84EE09EF1F26330000465413 /* SettingsManager.h */,
 				84EE09F01F26330000465413 /* SettingsManager.m */,
+				841952041F279A10005D9F83 /* NewPositionInCheckTableViewCell.h */,
+				841952051F279A10005D9F83 /* NewPositionInCheckTableViewCell.m */,
+				841952061F279A10005D9F83 /* NewPositionInCheckTableViewCell.xib */,
 				842774A41F23A50C0075CA03 /* Main.storyboard */,
 				842774A71F23A50C0075CA03 /* Assets.xcassets */,
 				842774A91F23A50C0075CA03 /* LaunchScreen.storyboard */,
@@ -151,6 +159,7 @@
 				842774AB1F23A50C0075CA03 /* LaunchScreen.storyboard in Resources */,
 				842774A81F23A50C0075CA03 /* Assets.xcassets in Resources */,
 				842774A61F23A50C0075CA03 /* Main.storyboard in Resources */,
+				841952081F279A10005D9F83 /* NewPositionInCheckTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EE09F41F2643CF00465413 /* NewCheckViewController.m in Sources */,
+				841952071F279A10005D9F83 /* NewPositionInCheckTableViewCell.m in Sources */,
 				84EE09F11F26330000465413 /* SettingsManager.m in Sources */,
 				84FA31761F25003E0072DDE4 /* MainScreenViewController.m in Sources */,
 				842774A01F23A50C0075CA03 /* AppDelegate.m in Sources */,
