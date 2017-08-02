@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="NewPositionInCheckTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewPositionCellID" id="KGk-i7-Jjw" customClass="NewPositionInCheckTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -24,13 +24,20 @@
                             <constraint firstAttribute="width" constant="30" id="OA5-qX-EYn"/>
                             <constraint firstAttribute="height" constant="30" id="k8A-ST-7lX"/>
                         </constraints>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="ownerButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZOT-zN-cJn"/>
+                        </connections>
                     </button>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ZJ-yB-x0Z">
-                        <rect key="frame" x="40" y="5" width="210" height="33"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ZJ-yB-x0Z">
+                        <rect key="frame" x="95" y="5" width="155" height="33"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="jSN-q7-RXr"/>
+                        </connections>
                     </textField>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qro-YP-HoQ">
                         <rect key="frame" x="255" y="6.5" width="60" height="30"/>
@@ -40,15 +47,27 @@
                         </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                    </textField>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T7h-uk-y7E">
+                        <rect key="frame" x="40" y="5" width="50" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="KjG-yu-NE3"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                     </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="0ZJ-yB-x0Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="0iW-Ua-JI7"/>
                     <constraint firstItem="aGV-Lb-7lS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="1Jp-vP-sqR"/>
+                    <constraint firstItem="0ZJ-yB-x0Z" firstAttribute="centerY" secondItem="T7h-uk-y7E" secondAttribute="centerY" id="BR8-oc-wkQ"/>
                     <constraint firstItem="0ZJ-yB-x0Z" firstAttribute="centerY" secondItem="aGV-Lb-7lS" secondAttribute="centerY" id="IJS-pN-lqY"/>
                     <constraint firstAttribute="trailing" secondItem="Qro-YP-HoQ" secondAttribute="trailing" constant="5" id="PE6-Ac-BQf"/>
-                    <constraint firstItem="0ZJ-yB-x0Z" firstAttribute="leading" secondItem="aGV-Lb-7lS" secondAttribute="trailing" constant="5" id="hzp-2W-81l"/>
+                    <constraint firstItem="0ZJ-yB-x0Z" firstAttribute="height" secondItem="T7h-uk-y7E" secondAttribute="height" id="haO-IM-Z2h"/>
+                    <constraint firstItem="0ZJ-yB-x0Z" firstAttribute="leading" secondItem="T7h-uk-y7E" secondAttribute="trailing" constant="5" id="iPe-ZQ-PYb"/>
+                    <constraint firstItem="T7h-uk-y7E" firstAttribute="leading" secondItem="aGV-Lb-7lS" secondAttribute="trailing" constant="5" id="sZr-HG-o63"/>
                     <constraint firstAttribute="bottom" secondItem="0ZJ-yB-x0Z" secondAttribute="bottom" constant="5" id="ujK-O2-Ohf"/>
                     <constraint firstItem="Qro-YP-HoQ" firstAttribute="leading" secondItem="0ZJ-yB-x0Z" secondAttribute="trailing" constant="5" id="vCJ-7G-7e4"/>
                     <constraint firstItem="Qro-YP-HoQ" firstAttribute="centerY" secondItem="aGV-Lb-7lS" secondAttribute="centerY" id="xUD-yf-yVx"/>
@@ -56,8 +75,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="ownerButton" destination="aGV-Lb-7lS" id="198-VM-i1m"/>
-                <outlet property="positionPrice" destination="Qro-YP-HoQ" id="ia1-da-OLx"/>
-                <outlet property="positionTitle" destination="0ZJ-yB-x0Z" id="4GQ-kq-tIu"/>
+                <outlet property="priceField" destination="Qro-YP-HoQ" id="045-eT-DB0"/>
+                <outlet property="rateField" destination="T7h-uk-y7E" id="AKf-I1-MEb"/>
+                <outlet property="rateWidht" destination="KjG-yu-NE3" id="9Rp-Pq-GTM"/>
+                <outlet property="titleField" destination="0ZJ-yB-x0Z" id="eUf-5y-rEv"/>
             </connections>
         </tableViewCell>
     </objects>

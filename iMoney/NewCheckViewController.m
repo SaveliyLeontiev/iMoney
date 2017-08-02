@@ -1,10 +1,13 @@
 #import "NewCheckViewController.h"
 #import "NewPositionInCheckTableViewCell.h"
+#import "PositionInCheck.h"
+#import "NewPositionCellDelegate.h"
 
 
-NSString const *kNewpositionCellID = @"NewPositionCellID";
+NSString const *kNewPositionCellID = @"NewPositionCellID";
 
-@interface NewCheckViewController () <UITableViewDataSource, UITextFieldDelegate>
+
+@interface NewCheckViewController () <UITableViewDataSource, UITextFieldDelegate,NewPositionCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UISwitch *debtSwitch;
@@ -12,7 +15,7 @@ NSString const *kNewpositionCellID = @"NewPositionCellID";
 @property (weak, nonatomic) IBOutlet UILabel *totalSumLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *positionCounter;
 
-
+@property (nonatomic) NSMutableArray<PositionInCheck *> *check;
 
 @end
 
@@ -21,7 +24,27 @@ NSString const *kNewpositionCellID = @"NewPositionCellID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.tableView registerNib:[UINib nibWithNibName:@"NewPositionInCheckTableViewCell" bundle:nil] forCellReuseIdentifier:kNewPositionCellID];
+    PositionInCheck *position = [[PositionInCheck alloc] init];
+    self.check = [NSMutableArray arrayWithObject:position];
+    [self reloadCheck];
+}
+
+
+- (void)reloadCheck
+{
+    float sum = 0.0;
+    for (PositionInCheck *position in self.check) {
+        float price = 0.0;
+        if ([self.debtSwitch isOn]) {
+            price = -position.rate*position.price;
+        }
+        else {
+            price = (1-position.rate)*position.price;
+        }
+        sum += price;
+    }
+    self.totalSumLabel.text = [NSString stringWithFormat:@"Total: %1.1f",sum];
 }
 
 
@@ -35,9 +58,51 @@ NSString const *kNewpositionCellID = @"NewPositionCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NewPositionInCheckTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewpositionCellID];
-#warning TODO: cell initialization
+    NewPositionInCheckTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNewPositionCellID];
+    PositionInCheck *position = [self.check objectAtIndex:indexPath.row];
+    [cell setPosition:position];
+    cell.index = indexPath.row;
+    cell.delegate = self;
     return cell;
+}
+
+
+#pragma mark - TextFieldDelegate implementation
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+#pragma mark - NewPositionCellDelegate implementation
+
+- (void)updatePosition:(PositionInCheck *)position atIndex:(NSUInteger)index
+{
+    [self.check setObject:position atIndexedSubscript:index];
+    [self reloadCheck];
+}
+
+#pragma mark - Action
+
+- (IBAction)counterValueChanged:(id)sender
+{
+    if ((NSInteger)self.positionCounter.value > [self.check count]) {
+        PositionInCheck *position = [[PositionInCheck alloc] init];
+        [self.check addObject:position];
+    }
+    else {
+        [self.check removeLastObject];
+    }
+    [self.tableView reloadData];
+    [self reloadCheck];
+}
+
+
+- (IBAction)completeButtonTapped:(id)sender
+{
+    
 }
 
 @end

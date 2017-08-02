@@ -1,8 +1,12 @@
 #import <UIKit/UIKit.h>
+#import "PositionInCheck.h"
+#import "NewPositionCellDelegate.h"
+
 
 @interface NewPositionInCheckTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITextField *positionTitle;
-@property (weak, nonatomic) IBOutlet UITextField *positionPrice;
+@property (nonatomic, readwrite) PositionInCheck *position;
+@property (nonatomic, readwrite) NSInteger index;
+@property (nonatomic, weak) id<NewPositionCellDelegate> delegate;
 
 @end
