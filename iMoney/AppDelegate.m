@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "StorageManager.h"
 
 @interface AppDelegate ()
 
@@ -15,13 +16,13 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    
+    [[StorageManager manager] saveStorage];
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    
+    [[StorageManager manager] saveStorage];
 }
 
 

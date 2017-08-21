@@ -1,6 +1,7 @@
 #import "NewCheckViewController.h"
 #import "NewPositionInCheckTableViewCell.h"
 #import "PositionInCheck.h"
+#import "StorageManager.h"
 #import "NewPositionCellDelegate.h"
 
 
@@ -31,7 +32,7 @@ NSString const *kNewPositionCellID = @"NewPositionCellID";
 }
 
 
-- (void)reloadCheck
+- (float)getCheckSum
 {
     float sum = 0.0;
     for (PositionInCheck *position in self.check) {
@@ -44,6 +45,13 @@ NSString const *kNewPositionCellID = @"NewPositionCellID";
         }
         sum += price;
     }
+    return sum;
+}
+
+
+- (void)reloadCheck
+{
+    float sum = [self getCheckSum];
     self.totalSumLabel.text = [NSString stringWithFormat:@"Total: %1.1f",sum];
 }
 
@@ -84,6 +92,7 @@ NSString const *kNewPositionCellID = @"NewPositionCellID";
     [self reloadCheck];
 }
 
+
 #pragma mark - Action
 
 - (IBAction)counterValueChanged:(id)sender
@@ -99,10 +108,22 @@ NSString const *kNewPositionCellID = @"NewPositionCellID";
     [self reloadCheck];
 }
 
+- (IBAction)debtModeChanged:(id)sender
+{
+    [self reloadCheck];
+}
 
 - (IBAction)completeButtonTapped:(id)sender
 {
-    
+    float sum = [self getCheckSum] + [[StorageManager manager] totalSum];
+    [[StorageManager manager] setTotalSum:sum];
+    self.check = [NSMutableArray arrayWithObject:[[PositionInCheck alloc] init]];
+    self.titleField.text = @"";
+    [self.debtSwitch setOn:NO];
+    self.positionCounter.value = 1;
+    [self.tableView reloadData];
+    [self reloadCheck];
+    self.tabBarController.selectedIndex = 0;
 }
 
 @end

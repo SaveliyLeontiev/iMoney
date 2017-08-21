@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, OwnerState)
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rateWidht;
 @property (nonatomic) OwnerState state;
+@property (nonatomic) NSNumberFormatter *nf;
 
 @end
 
@@ -30,6 +31,12 @@ typedef NS_ENUM(NSInteger, OwnerState)
 {
     [super awakeFromNib];
     self.rateWidht.constant = 50;
+    
+    self.nf = [NSNumberFormatter new];
+    self.nf.minimumSignificantDigits = 1;
+    self.nf.minimumFractionDigits = 1;
+    self.nf.maximumFractionDigits = 2;
+    
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     numberToolbar.items = @[[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
                             [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)]];
@@ -43,8 +50,8 @@ typedef NS_ENUM(NSInteger, OwnerState)
 {
     _position = position;
     self.titleField.text = position.title;
-    self.rateField.text = [NSString stringWithFormat:@"%1.2f",position.rate];
-    self.priceField.text = [NSString stringWithFormat:@"%1.1f",position.price];
+    self.rateField.text = [self.nf stringFromNumber:[NSNumber numberWithFloat:position.rate]];
+    self.priceField.text = [self.nf stringFromNumber:[NSNumber numberWithFloat:position.price]];
     if (position.rate == 0) {
         self.state = kSecondOwnerState;
     }
@@ -88,12 +95,27 @@ typedef NS_ENUM(NSInteger, OwnerState)
 }
 
 
+#pragma  mark - UITextFieldDelegate implementation
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    self.position.title = self.titleField.text;
-    [self.delegate updatePosition:self.position atIndex:self.index];
-    [self.priceField becomeFirstResponder];
+    [self.titleField resignFirstResponder];
     return YES;
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == self.rateField) {
+        self.position.rate = [[self.nf numberFromString:self.rateField.text] floatValue];
+    }
+    else if (textField == self.titleField) {
+        self.position.title = self.titleField.text;
+    }
+    else {
+        self.position.price = [[self.nf numberFromString:self.priceField.text ] floatValue];
+    }
+    [self.delegate updatePosition:self.position atIndex:self.index];
 }
 
 #pragma mark - Action
@@ -101,13 +123,9 @@ typedef NS_ENUM(NSInteger, OwnerState)
 - (void)doneWithNumberPad
 {
     if ([self.rateField isFirstResponder]) {
-        self.position.rate = [self.rateField.text floatValue];
-        [self.delegate updatePosition:self.position atIndex:self.index];
-        [self.titleField becomeFirstResponder];
+        [self.rateField resignFirstResponder];
     }
     else {
-        self.position.price = [self.priceField.text floatValue];
-        [self.delegate updatePosition:self.position atIndex:self.index];
         [self.priceField resignFirstResponder];
     }
 }
@@ -127,7 +145,7 @@ typedef NS_ENUM(NSInteger, OwnerState)
         case kSecondOwnerState:
             self.state = kCustomState;
             self.position.rate = 0.5;
-            self.rateField.text = [NSString stringWithFormat:@"%1.2f",self.position.rate];
+            self.rateField.text = [self.nf stringFromNumber:[NSNumber numberWithFloat:self.position.rate]];
             break;
         case kCustomState:
             self.state = kCommonState;

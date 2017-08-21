@@ -1,5 +1,5 @@
 #import "MainScreenViewController.h"
-
+#import "StorageManager.h"
 
 @interface MainScreenViewController ()
 
@@ -12,7 +12,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.totalSum.text = [NSString stringWithFormat:@"%1.1f",[[StorageManager manager] totalSum]];
 }
 
 @end
